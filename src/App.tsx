@@ -4,7 +4,7 @@ import p5 from "p5";
 import Words from './components/Words';
 import Chat from './components/Chat';
 import { Route, Routes } from 'react-router-dom';
-import Home from './components/Home';
+import Home from './pages/Home';
 import Navbar from './components/Navbar';
 
 const App = () => {
