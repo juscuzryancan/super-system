@@ -2,9 +2,12 @@ const Home = () => {
 
   return (
     <div>
-      <h1
-        className="text-2xl"
-      >Mach Typer</h1>
+      <div 
+        className="flex justify-center items-center
+        p-8"
+      >
+        Mach-Typer is a typing application used to encourage people to develop their typing skills with a game-ified application. 
+      </div>
     </div>
   );
 }
