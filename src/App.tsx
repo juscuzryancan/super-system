@@ -5,6 +5,7 @@ import Words from './components/Words';
 import Chat from './components/Chat';
 import { Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
+import Navbar from './components/Navbar';
 
 const App = () => {
   const [socketId, setSocketId] = useState("");
@@ -43,16 +44,23 @@ const App = () => {
   }
 
   return (
-    <Routes>
-      <Route 
-        path="/"
-        element={<Home />}
-      />
-      <Route 
-        path="/login"
-        element={<div>hello</div>}
-      />
-    </Routes>
+    <div
+      className="mx-8"
+    >
+      <Navbar />
+      <main>
+        <Routes>
+          <Route 
+            path="/"
+            element={<Home />}
+          />
+          <Route 
+            path="/login"
+            element={<div>hello</div>}
+          />
+        </Routes>
+      </main>
+    </div>
   )
 }
 
