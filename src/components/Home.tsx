@@ -2,7 +2,9 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Mach Typer</h1>
+      <h1
+        className="text-2xl"
+      >Mach Typer</h1>
     </div>
   );
 }
