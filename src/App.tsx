@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { io, Socket } from "socket.io-client";
 import p5 from "p5";
 import Words from './components/Words';
 import Chat from './components/Chat';
