@@ -13,18 +13,21 @@ const Chat = () => {
     if (!stompClient) {
       return
     }
+    handleSubscribe(stompClient);
+  }, [messages])
 
-    stompClient.subscribe('/topic/greetings', function (greeting: any) {
-      const { body } = greeting;
-      const { message } = JSON.parse(body);
+  const handleSubscribe = useCallback((stompClient: any) => {
+    stompClient.subscribe('/topic/messages', function (message: any) {
+      const { body } = message;
+      const { content } = JSON.parse(body);
       const newMessages = messages.map((message) => message);
       newMessages.push({
-        content: message,
-        id: greeting.headers["message-id"]
+        content,
+        id: message.headers["message-id"]
       });
       setMessages(newMessages);
     });
-  }, [messages])
+  }, [messages]);
   
   const handleConnect = () => {
     const socket = new SockJS('http://localhost:8080/gs-guide-websocket');
@@ -34,16 +37,7 @@ const Chat = () => {
     //frame comes out to be undefined
     stompClient.connect({}, function (frame:any) {
         setConnected(true);
-        stompClient.subscribe('/topic/greetings', function (greeting: any) {
-          const { body } = greeting;
-          const { message } = JSON.parse(body);
-          const newMessages = messages.map((message) => message);
-          newMessages.push({
-            content: message,
-            id: greeting.headers["message-id"]
-          });
-          setMessages(newMessages);
-        });
+        handleSubscribe(stompClient);
     });
   };
 
@@ -56,7 +50,7 @@ const Chat = () => {
 
   const handleSend: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    stompClient.send("/app/hello", {}, JSON.stringify({'name': message}));
+    stompClient.send("/app/messages", {}, JSON.stringify({"content": message}));
   }
 
   return (
