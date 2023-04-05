@@ -19,9 +19,10 @@ const Chat = () => {
   const handleSubscribe = useCallback((stompClient: any) => {
     stompClient.subscribe('/topic/messages', function (message: any) {
       const { body } = message;
-      const { content } = JSON.parse(body);
+      const { content, username } = JSON.parse(body);
       const newMessages = messages.map((message) => message);
       newMessages.push({
+        username,
         content,
         id: message.headers["message-id"]
       });
@@ -50,7 +51,10 @@ const Chat = () => {
 
   const handleSend: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    stompClient.send("/app/messages", {}, JSON.stringify({"content": message}));
+    stompClient.send("/app/messages", {}, JSON.stringify({
+      content: message,
+      username: "Ryan Riley"
+    }));
   }
 
   return (
@@ -60,10 +64,10 @@ const Chat = () => {
         border-black border-2
         h-72 w-full" 
       >
-        {messages.map(({content, id}: any) => {
+        {messages.map(({username, content, id}: any) => {
           return (
             <div key={id}>
-              {content}
+              {username}: {content}
             </div>
           )
         })}
