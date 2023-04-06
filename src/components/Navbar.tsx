@@ -4,7 +4,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className="flex"
+      className="flex p-4 justify-between"
     >
       <Link
         to="/"
@@ -13,9 +13,12 @@ const Navbar = () => {
           Mach Typer
         </h1>
       </Link>
-      <Link to="/">first</Link>
-      <Link to="/">second</Link>
-      <Link to="/">third</Link>
+      <div
+        className="flex gap-4 justify-between"
+      >
+        <Link className="bg-secondary px-2 py-1 rounded text-white" to="/start">Start Typing</Link>
+        <Link className="bg-secondary px-2 py-1 rounded text-white" to="/">Login</Link>
+      </div>
     </nav>
   );
 }

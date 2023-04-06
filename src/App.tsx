@@ -1,17 +1,13 @@
-import { useState, useEffect } from 'react'
-import p5 from "p5";
-import Words from './components/Words';
 import Chat from './components/Chat';
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
-import SockJS from "sockjs-client";
 
 const App = () => {
 
   return (
     <div
-      className="mx-8"
+      className="bg-pentanary h-screen w-screen px-8"
     >
       <Navbar />
       <main>
