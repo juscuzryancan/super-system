@@ -8,7 +8,7 @@ const App = () => {
 
   return (
     <div
-      className="bg-pentanary h-screen w-screen px-8"
+      className="flex flex-col bg-pentanary h-screen w-screen px-8"
     >
       <Navbar />
       <Routes>

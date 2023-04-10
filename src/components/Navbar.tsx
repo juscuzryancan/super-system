@@ -4,7 +4,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className="flex p-4 justify-between"
+      className="flex py-4 justify-between"
     >
       <Link
         to="/"
