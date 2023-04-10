@@ -16,7 +16,7 @@ const Navbar = () => {
       <div
         className="flex gap-4 justify-between"
       >
-        <Link className="bg-secondary px-2 py-1 rounded text-white" to="/start">Start Typing</Link>
+        <Link className="bg-secondary px-2 py-1 rounded text-white" to="/game">Start Typing</Link>
         <Link className="bg-secondary px-2 py-1 rounded text-white" to="/">Login</Link>
       </div>
     </nav>
