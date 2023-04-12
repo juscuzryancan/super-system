@@ -1,0 +1,12 @@
+version: 2.1
+
+# Define the jobs we want to run for this project
+jobs:
+  build:
+    docker:
+      - image: cimg/node:18.15.0
+    working_directory: ~/super-system
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm test
