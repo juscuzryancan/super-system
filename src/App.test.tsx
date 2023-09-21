@@ -1,5 +1,8 @@
-import App from "./App";
+import { render } from '../test/utils';
+import App from './App';
 
-test("that jest is working", () => {
-  expect(true).toBeTruthy();
-})
+describe('App Component', () => {
+  it('Renders', () => {
+    render(<App />);
+  });
+});

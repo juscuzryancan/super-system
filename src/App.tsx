@@ -5,28 +5,16 @@ import Navbar from './components/Navbar';
 import Game from './pages/Game';
 
 const App = () => {
-
   return (
-    <div
-      className="flex flex-col bg-pentanary h-screen w-screen px-8"
-    >
+    <div className="flex flex-col bg-pentanary h-screen w-screen px-8">
       <Navbar />
       <Routes>
-        <Route 
-          path="/"
-          element={<Home />}
-        />
-        <Route 
-          path="/login"
-          element={<div>hello</div>}
-        />
-        <Route
-          path="/game"
-          element={<Game />}
-        />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<div>hello</div>} />
+        <Route path="/game" element={<Game />} />
       </Routes>
     </div>
-  )
-}
+  );
+};
 
 export default App;
