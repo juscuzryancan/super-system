@@ -1,35 +1,33 @@
 {
-  "root": true,
-  "env": {
-    "jest": true
+  root: true,
+  env: {
+    browser: true,
+    es2020: true,
+    node: true,
   },
-  "parser": "@typescript-eslint/parser",
-  "extends": [
-    "airbnb-typescript/base",
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
     "eslint-config-prettier"
   ],
-  "plugins": [
-    "import",
-    "@typescript-eslint"
+  ignorePatterns: [
+    "dist",
+    ".eslintrc.cjs"
   ],
-  "rules": {
-    "comma-dangle": 0,
-    "no-underscore-dangle": 0,
-    "no-param-reassign": 0,
-    "no-return-assign": 0,
-    "camelcase": 0,
-    "import/extensions": 0,
-    "@typescript-eslint/no-redeclare": 0
+  parser: "@typescript-eslint/parser",
+  plugins: [
+    "react-refresh"
+  ],
+  rules: {
+    "react-refresh/only-export-components": [
+      "warn",
+      { allowConstantExport: true
+      },
+    ],
+    "@typescript-eslint/no-explicit-any": [
+      "warn"
+    ],
   },
-  "settings": {
-    "import/parsers": {
-      "@typescript-eslint/parser": [
-        ".ts",
-        ".tsx"
-      ]
-    },
-    "import/resolver": {
-      "typescript": {}
-    }
-  }
 }
