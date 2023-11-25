@@ -5,7 +5,6 @@ const Game = () => {
   return (
     <div className="flex flex-col h-full">
       <Words />
-      <Chat />
     </div>
   );
 }
