@@ -9,6 +9,8 @@ export default {
   },
   moduleNameMapper: {
     '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/test/__ mocks __/fileMock.js',
+    '@/components/ui/(.*)$':'<rootDir>/src/components/ui/$1',
+    '@/lib/(.*)$':'<rootDir>/src/lib/$1'
   },
   moduleDirectories: [
     'node_modules',
