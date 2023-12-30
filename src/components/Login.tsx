@@ -1,10 +1,11 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
-import clsx from 'clsx';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 type Inputs = {
   username: string;
   password: string;
-};
+  };
 
 const Login = () => {
   const {
@@ -21,21 +22,20 @@ const Login = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col border-black border"
+      className="flex flex-col items-center"
     >
       <h1>Login</h1>
       <div>
         <label className={errors.password && 'text-red-500'}>Username</label>
-        <input
-          defaultValue="hello"
+        <Input
           {...register('username', { required: true })}
         />
       </div>
       <div>
         <label className={errors.password && 'text-red-500'}>Password</label>
-        <input {...register('password', { required: true })} />
+        <Input {...register('password', { required: true })} />
       </div>
-      <button>Log In</button>
+      <Button>Log in</Button>
     </form>
   );
 };
