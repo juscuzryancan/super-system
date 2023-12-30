@@ -19,10 +19,14 @@ export const userSlice = createSlice({
       state.username = '';
       state.token = '';
     },
+    setToken: (state, action) => {
+      const { token } = action.payload;
+      state.token = token;
+    },
   },
 });
 
-export const { clearUser } = userSlice.actions;
+export const { clearUser, setToken } = userSlice.actions;
 
 //custom selectors
 export const selectUser = (state: RootState) => state.user;

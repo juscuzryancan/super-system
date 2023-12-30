@@ -10,8 +10,10 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useLoginMutation } from '../api/apiSlice';
 import * as z from 'zod';
-import axios from 'axios';
+import { useAppDispatch } from '@/app/hooks';
+import { setToken } from './userSlice';
 
 const formSchema = z
   .object({
@@ -21,6 +23,7 @@ const formSchema = z
   .required();
 
 const Login = () => {
+  const dispatch = useAppDispatch();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -28,10 +31,17 @@ const Login = () => {
       password: '',
     },
   });
+  const [login] = useLoginMutation();
 
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+  const onSubmit = async (credentials: z.infer<typeof formSchema>) => {
     try {
-    } catch (e) {}
+      const { token } = await login(credentials).unwrap();
+      dispatch(setToken(token));
+      localStorage.setItem('token', token);
+      console.log();
+    } catch (e) {
+      console.log('somehting went wrong');
+    }
   };
 
   return (
