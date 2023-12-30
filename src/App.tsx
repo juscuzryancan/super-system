@@ -1,9 +1,8 @@
-import Chat from './components/Chat';
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import Game from './pages/Game';
-import Login from './components/Login';
+import Login from './features/auth/Login';
 
 const App = () => {
   return (
