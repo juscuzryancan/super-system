@@ -2,10 +2,9 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <nav>
-      <h1>
-        <Link to="/">Mach Typer</Link>
-      </h1>
+    <nav className="flex gap-2">
+      <Link to="/">Mach Typer</Link>
+      <Link to="/login">Login</Link>
     </nav>
   );
 };
