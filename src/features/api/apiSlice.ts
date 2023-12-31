@@ -1,10 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../../app/store';
 
+const API_URL = 'http://localhost:8080/api';
+
 const apiSlice = createApi({
   tagTypes: ['User'],
   baseQuery: fetchBaseQuery({
-    baseUrl: '/api',
+    baseUrl: API_URL,
     prepareHeaders: (headers, { getState }) => {
       const {
         user: { token },
@@ -18,7 +20,7 @@ const apiSlice = createApi({
   endpoints: builder => ({
     login: builder.mutation({
       query: credentials => ({
-        url: '/users/login',
+        url: '/auth/login',
         method: 'POST',
         body: credentials,
       }),
@@ -26,7 +28,7 @@ const apiSlice = createApi({
     }),
     register: builder.mutation({
       query: user => ({
-        url: '/users/register',
+        url: '/auth/register',
         method: 'POST',
         body: user,
       }),
