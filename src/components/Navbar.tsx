@@ -12,20 +12,26 @@ const Navbar = () => {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-            <Link to="/">Mach Typer</Link>
-          </NavigationMenuLink>
+          <Link to="/">
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              Mach Typer
+            </NavigationMenuLink>
+          </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-            <Link to="/login">Login</Link>
-          </NavigationMenuLink>
+          <Link to="/login">
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              Login
+            </NavigationMenuLink>
+          </Link>
         </NavigationMenuItem>
-        <Link to="/register">
-          <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-            Register
-          </NavigationMenuLink>
-        </Link>
+        <NavigationMenuItem>
+          <Link to="/register">
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              Register
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
   );

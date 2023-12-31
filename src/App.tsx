@@ -3,17 +3,19 @@ import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import Game from './pages/Game';
 import Login from './features/auth/Login';
+import Register from './features/auth/Register';
 
 const App = () => {
   return (
-    <div className="flex flex-col bg-pentanary h-screen w-screen px-8">
+    <>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/game" element={<Game />} />
       </Routes>
-    </div>
+    </>
   );
 };
 
