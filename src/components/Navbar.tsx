@@ -1,11 +1,33 @@
 import { Link } from 'react-router-dom';
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  navigationMenuTriggerStyle,
+} from '@/components/ui/navigation-menu';
 
 const Navbar = () => {
   return (
-    <nav className="flex gap-2">
-      <Link to="/">Mach Typer</Link>
-      <Link to="/login">Login</Link>
-    </nav>
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+            <Link to="/">Mach Typer</Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+            <Link to="/login">Login</Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <Link to="/register">
+          <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+            Register
+          </NavigationMenuLink>
+        </Link>
+      </NavigationMenuList>
+    </NavigationMenu>
   );
 };
 
