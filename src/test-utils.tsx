@@ -1,17 +1,46 @@
-import * as React from 'react';
-import { render as rtlRender } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import React, { PropsWithChildren } from 'react';
+import { render } from '@testing-library/react';
+import type { RenderOptions } from '@testing-library/react';
+import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import { store } from './app/store';
+import { BrowserRouter } from 'react-router-dom';
 
-export function render(ui: any, options?: any) {
-  return rtlRender(ui, { wrapper: Wrapper, ...options });
+import type { AppStore, RootState } from '@/redux/store';
+// As a basic setup, import your same slice reducers
+import userReducer from '@/features/auth/userSlice';
+import apiSlice from '@/features/api/apiSlice';
+
+// This type interface extends the default options for render from RTL, as well
+// as allows the user to specify other things such as initialState, store.
+interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
+  preloadedState?: Partial<RootState>;
+  store?: AppStore;
 }
 
-function Wrapper({ children }: { children: React.ReactNode }): JSX.Element {
-  return (
-    <Provider store={store}>
-      <BrowserRouter>{children}</BrowserRouter>;
-    </Provider>
-  );
+export function renderWithProviders(
+  ui: React.ReactElement,
+  {
+    preloadedState = {},
+    // Automatically create a store instance if no store was passed in
+    store = configureStore({
+      reducer: {
+        [apiSlice.reducerPath]: apiSlice.reducer,
+        user: userReducer,
+      },
+      preloadedState,
+    }),
+    ...renderOptions
+  }: ExtendedRenderOptions = {},
+) {
+  //eslint-disable-next-line
+  function Wrapper({ children }: PropsWithChildren<{}>): JSX.Element {
+    return (
+      <Provider store={store}>
+        <BrowserRouter>{children}</BrowserRouter>
+      </Provider>
+    );
+  }
+
+  // Return an object with the store and all of RTL's query functions
+  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
 }

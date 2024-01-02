@@ -12,7 +12,7 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useLoginMutation } from '../api/apiSlice';
 import * as z from 'zod';
-import { useAppDispatch } from '@/app/hooks';
+import { useAppDispatch } from '@/redux/hooks';
 import { setToken } from './userSlice';
 
 const formSchema = z
