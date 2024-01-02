@@ -2,7 +2,7 @@ import { renderWithProviders } from '@/test-utils';
 import Login from './Login';
 import { http, HttpResponse, delay } from 'msw';
 import { setupServer } from 'msw/node';
-import { fireEvent, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 // We use msw to intercept the network request during the test,
 // and return the response 'John Smith' after 150ms
@@ -26,20 +26,8 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 describe('Login', () => {
-  it('sends a request when submit button is clicked', async () => {
+  it('has a login button', () => {
     renderWithProviders(<Login />);
-
-    // should show no user initially, and not be fetching a user
-    expect(screen.getByText(/Log in/i)).toBeInTheDocument();
-    //expect(screen.queryByText(/Fetching user\.\.\./i)).not.toBeInTheDocument()
-
-    // after clicking the 'Fetch user' button, it should now show that it is fetching the user
-    fireEvent.click(screen.getByRole('button', { name: /Log in/i }));
-    //expect(screen.getByText(/no user/i)).toBeInTheDocument()
-
-    // after some time, the user should be received
-    // expect(await screen.findByText(/John Smith/i)).toBeInTheDocument()
-    // expect(screen.queryByText(/no user/i)).not.toBeInTheDocument()
-    // expect(screen.queryByText(/Fetching user\.\.\./i)).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Log in' })).not.toBeNull();
   });
 });

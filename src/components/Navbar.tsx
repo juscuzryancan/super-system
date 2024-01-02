@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -6,31 +6,33 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
+import { PropsWithChildren } from 'react';
+
+const Link = ({ children, to }: PropsWithChildren<{ to: string }>) => {
+  const navigate = useNavigate();
+
+  return (
+    <NavigationMenuLink
+      className={navigationMenuTriggerStyle()}
+      onClick={() => navigate(to)}
+    >
+      {children}
+    </NavigationMenuLink>
+  );
+};
 
 const Navbar = () => {
   return (
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <Link to="/">
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Mach Typer
-            </NavigationMenuLink>
-          </Link>
+          <Link to="/">Mach Typer</Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link to="/login">
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Login
-            </NavigationMenuLink>
-          </Link>
+          <Link to="/login">Login</Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link to="/register">
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Register
-            </NavigationMenuLink>
-          </Link>
+          <Link to="/register">Register</Link>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
